@@ -1,26 +1,10 @@
 import React from 'react';
 
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import ChordsSelector from "./ChordsSelector";
 
-const useStyles = theme => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(200),
-        minWidth: 120
-    },
-});
 
-class SongOptions extends React.Component {
+export default class SongOptions extends React.Component {
 
     constructor(props) {
         super(props)
@@ -32,12 +16,9 @@ class SongOptions extends React.Component {
     onTempoChanged (event) {
     }
 
-    onPlayClicked (event) {
-        event.preventDefault();
-    }
-
     onKeySelected(event) {
         console.log("Key changed to: " +  event.target.value);
+        this.props.onKeyChanged(event.target.value);
         this.setState({keySelected: event.target.value});
     }
 
@@ -46,42 +27,39 @@ class SongOptions extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
         return <div className="ui container">
             <h1>Select your options</h1>
             <div className="ui segment" style={{backgroundColor: 'turquoise', marginTop: '20px'}}>
 
-                <FormControl classes={classes.formControl}  bgcolor="background.paper">
-                    <InputLabel>Select your Key</InputLabel>
-                    <Select onChange={this.onKeySelected} classes={classes.selectEmpty}>
-                        <MenuItem value="c">C</MenuItem>
-                        <MenuItem value="c#">C#</MenuItem>
-                        <MenuItem value="d">D</MenuItem>
-                        <MenuItem value="d#">D#</MenuItem>
-                        <MenuItem value="e">E</MenuItem>
-                        <MenuItem value="f">F</MenuItem>
-                        <MenuItem value="f#">F#</MenuItem>
-                        <MenuItem value="g">G</MenuItem>
-                        <MenuItem value="g#">G#</MenuItem>
-                        <MenuItem value="a">A</MenuItem>
-                        <MenuItem value="a#">A#</MenuItem>
-                        <MenuItem value="b">B</MenuItem>
-                    </Select>
-                </FormControl>
+                <form>
+                    <label>Select your Key</label>
+                    <select onChange={this.onKeySelected}>
+                        <option value="c">C</option>
+                        <option value="c#">C#</option>
+                        <option value="d">D</option>
+                        <option value="d#">D#</option>
+                        <option value="e">E</option>
+                        <option value="f">F</option>
+                        <option value="f#">F#</option>
+                        <option value="g">G</option>
+                        <option value="g#">G#</option>
+                        <option value="a">A</option>
+                        <option value="a#">A#</option>
+                        <option value="b">B</option>
+                    </select>
+                </form>
                 <br/>
-                <FormControl classes={classes.formControl}>
-                    <InputLabel>Select Instrument</InputLabel>
-                    <Select onChange={this.onInstrumentChanged} classes={classes.selectEmpty}>
-                        <MenuItem value="266">Acoustic Guitar (Steel)</MenuItem>
-                        <MenuItem value="336">Electric Guitar (Distorsion)</MenuItem>
-                        <MenuItem value="289">Electric Guitar (Clean)</MenuItem>
-                    </Select>
-                </FormControl>
-                <ChordsSelector keySelected={this.state.keySelected}/>
-                <Button variant="contained" onClick={this.onPlayClicked.bind(this)}>Play</Button>
+                <form>
+                    <label>Select Instrument</label>
+                    <select onChange={this.onInstrumentChanged}>
+                        <option value="266">Acoustic Guitar (Steel)</option>
+                        <option value="336">Electric Guitar (Distorsion)</option>
+                        <option value="289">Electric Guitar (Clean)</option>
+                    </select>
+                </form>
+                <ChordsSelector keySelected={this.state.keySelected} instrumentSelected={this.state.instrumentSelected}/>
             </div>
         </div>
     }
 }
 
-export default withStyles(useStyles)(SongOptions)
