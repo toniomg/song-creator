@@ -1,55 +1,48 @@
-import React from 'react'
+import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 
-import MIDISounds from 'midi-sounds-react';
+import { chordsList } from '../KeyData';
+import {connect} from 'react-redux';
+import { Button, Label, Container } from 'semantic-ui-react';
 
-import {chordsList} from "../KeyData";
 
-const chordPlayDuration = 0.5;
+class ChordsSelector extends React.Component {
 
-export default class ChordsSelector extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onChordPressed = this.onChordPressed.bind(this);
+  }
 
-    constructor(props) {
-        super(props)
-        this.onChordPressed = this.onChordPressed.bind(this)
-    }
+  onChordPressed(chord) {
+      this.props.chordPlayer.playUpChord(chord, 1);
+  }
 
-    onChordPressed(chord) {
-        console.log("Playing " + chord)
-        this.midiSounds.playStrumDownNow(this.props.instrumentSelected,chord, chordPlayDuration);
-        this.midiSounds.playStrumUpAt(this.midiSounds.contextTime() + chordPlayDuration, this.props.instrumentSelected, chord, chordPlayDuration);
-    }
 
-    render () {
+  render() {
+    const keySelected = this.props.selectedKey;
 
-        const keySelected = this.props.keySelected;
-        if (!keySelected) {
-            console.log("No key selected yet");
-            return null;
+    const chordsNumbersMajor = ["I", "ii", "iii", "IV", "V", "vi", "VII°"];
 
-        } else {
-            console.log("Loading key: " + chordsList[keySelected]);
-
-            return <div className='message-box'>
+    return (<Container style={{margin: 20}}>
+        <Grid item xs={7}>
+          <Grid container justify="center" spacing={3}>
+            {chordsList[keySelected].map((value, index) => (
+              <Grid key={value[0]} item>
                 <div>
-                    <Grid item xs={7}>
-                        <Grid container justify="center" spacing={3}>
-                            {chordsList[keySelected].map((value) => (
-                                <Grid key={value[0]} item>
-                                    <button draggable="true" class="ui button" onClick={() => this.onChordPressed(value[1])}>{value[0]}</button>
-                                </Grid>
-                            ))}
-                            <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[this.props.instrumentSelected]} />
-                        </Grid>
-                    </Grid>
+                  <p>{chordsNumbersMajor[index]}</p>
+                  <Button onClick={() => this.onChordPressed(value[1])}>{value[0]}</Button>
                 </div>
-                <div>
-
-                </div>
-            </div>
-        }
-
-
-    }
+              </Grid>))}
+          </Grid>
+        </Grid>
+    </Container>);
+  }
 }
+
+
+const mapStateToProps = (state) => {
+  return {selectedKey: state.selectedKey, selectedInstrument: state.selectedInstrument};
+}
+
+export default connect(mapStateToProps)(ChordsSelector);

@@ -22,17 +22,17 @@ const S6 = 3 * O + E;
 
 const _C = [
     S5 + 3
-    , S4 + 0
-    , S3 + 2
+    , S4 + 2
+    , S3 + 0
     , S2 + 1
     , S1 + 0
 ];
 
 const _Dm = [
     S4 + 0
-    , S3 + 3
-    , S2 + 2
-    , S1 + 3
+    , S3 + 2
+    , S2 + 3
+    , S1 + 1
 ];
 
 const _Em = [
@@ -77,7 +77,9 @@ const _Bdm = [
     , S2 + 3
 ];
 
-export let chordsList = {"c":[["C", _C] , ["Dm", _Dm] , ["Em", _Em], ["F", _F], ["G", _G], ["Am", _Am], ["B°", _Bdm]],
-    "c#":[["C#", _C] , ["D#m", _Dm] , ["E#m", _Em], ["F#", _F], ["G#", _G], ["A#m", _Am], ["B#°", _Bdm]]};
+export const allChords = {"C": _C, "Dm": _Dm, "Em": _Em, "F": _F, "G": _G, "Am": _Am, "Bdm": _Bdm};
+
+export const chordsList = {"C":[["C", _C] , ["Dm", _Dm] , ["Em", _Em], ["F", _F], ["G", _G], ["Am", _Am], ["B°", _Bdm]],
+    "C#":[["C#", _C] , ["D#m", _Dm] , ["E#m", _Em], ["F#", _F], ["G#", _G], ["A#m", _Am], ["B#°", _Bdm]]};
 
 

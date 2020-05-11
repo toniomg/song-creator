@@ -1,0 +1,1 @@
+export const playOptions = {key: "C", instrument: "266", tempo: 120, strum: "", progression: "", bars: 4, beats: 4};

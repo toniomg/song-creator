@@ -1,0 +1,25 @@
+
+
+body {
+    /*background: red;*/
+    background-image: url("polaroid.png");
+}
+
+.ui.container.songOptions {
+    margin: 10px;
+    padding: 10px;
+    border: 2px cadetblue solid;
+    background: #B2D8D8;
+    border-radius: 3px;
+}
+
+.ui.input.tempoInput {
+    max-width: 90px;
+}
+
+/*#cwontainer {*/
+    /*background: #8CC5DC;*/
+    /*padding: 10px;*/
+    /*margin: 10px;*/
+    /*border: #0074D9 2px solid;*/
+/*}*/

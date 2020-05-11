@@ -1,6 +1,7 @@
 {
   "name": "song-creator",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.12",
@@ -11,15 +12,28 @@
     "midi-sounds-react": "^1.2.45",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "react-test-renderer": "^16.13.1",
-    "semantic-ui-react": "^0.88.2"
+    "redux": "^4.0.5",
+    "semantic-ui-react": "^0.88.2",
+    "source-map-explorer": "^2.4.2"
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "react-scripts": "1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
